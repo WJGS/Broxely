@@ -1,0 +1,19 @@
+modLoader="javafml"
+
+loaderVersion="[28]"
+
+credits="This mod was made by @WJGS"
+
+[[mods]]
+
+modId="broxely"
+
+version="0.1B"
+
+displayName="Broxely"
+
+description='''
+
+mod
+
+'''

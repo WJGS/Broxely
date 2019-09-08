@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "broxely:block/fire_infused_planks"
+  },
+  "variants": {
+    "": { "model": "broxely:block/fire_infused_planks"}
+  }
+}

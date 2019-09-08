@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "broxely:block/altar"
+  },
+  "variants": {
+    "facing=north": { "model": "broxely:block/altar"},
+    "facing=east": { "model": "broxely:block/altar", "y": 90 },
+    "facing=south": { "model": "broxely:block/altar", "y": 180 },
+    "facing=west": { "model": "broxely:block/altar", "y": 270 }
+  }
+}

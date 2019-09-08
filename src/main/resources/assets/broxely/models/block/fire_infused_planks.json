@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "broxely:block/fire_infused_planks"
+  }
+}
