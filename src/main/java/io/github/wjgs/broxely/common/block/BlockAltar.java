@@ -62,11 +62,6 @@ public class BlockAltar extends Block {
     }
 
     @Override
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }

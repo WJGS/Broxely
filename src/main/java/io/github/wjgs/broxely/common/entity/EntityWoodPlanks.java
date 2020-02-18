@@ -9,6 +9,7 @@ import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -36,7 +37,7 @@ public class EntityWoodPlanks extends ItemEntity {
     }
 
     public EntityWoodPlanks(ItemEntity itemEntity) {
-        super(itemEntity.getEntityWorld(), itemEntity.posX, itemEntity.posY, itemEntity.posZ, itemEntity.getItem());
+        super(itemEntity.getEntityWorld(), itemEntity.getPosition().getX(), itemEntity.getPosition().getY(), itemEntity.getPosition().getZ(), itemEntity.getItem());
     }
 
     @Override
@@ -69,7 +70,7 @@ public class EntityWoodPlanks extends ItemEntity {
     private void startRitual() {
         if (!m_beingConverted) {
             m_beingConverted = true;
-            m_lightning = new LightningBoltEntity(world, posX, posY, posZ, false);
+            m_lightning = new LightningBoltEntity(world, getPosition().getX(), getPosition().getY(), getPosition().getZ(), false);
         }
 
         if (meetsConvertConditions()) {
@@ -93,10 +94,11 @@ public class EntityWoodPlanks extends ItemEntity {
     }
 
     private void convert() {
+        BlockPos pos = getPosition();
         world.removeBlock(getPosition().down(), false);
 
-        world.createExplosion(null, posX, posY, posZ, 5f, Explosion.Mode.DESTROY);
-        world.createExplosion(null, posX, posY, posZ, 5.1f, Explosion.Mode.NONE);
+        world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 5f, Explosion.Mode.DESTROY);
+        world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(),5.1f, Explosion.Mode.NONE);
 
         world.getGameRules().get(GameRules.DO_FIRE_TICK).set(true, getServer());
 
@@ -105,7 +107,7 @@ public class EntityWoodPlanks extends ItemEntity {
 
         m_beingConverted = false;
         m_converted = false;
-        posY += 8;
+        setPosition(pos.getX(), pos.getY() + 8, pos.getZ());
     }
 
     private boolean meetsConvertConditions() {
