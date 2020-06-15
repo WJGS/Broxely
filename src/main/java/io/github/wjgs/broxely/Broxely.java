@@ -1,6 +1,9 @@
 package io.github.wjgs.broxely;
 
+import io.github.wjgs.broxely.common.block.altar.AltarScreen;
+import io.github.wjgs.broxely.common.init.BroxelyContainers;
 import io.github.wjgs.broxely.common.init.BroxelyItems;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -29,6 +32,7 @@ public class Broxely {
     }
 
     private void setup(FMLClientSetupEvent event) {
+        ScreenManager.registerFactory(BroxelyContainers.ALTAR_CONTAINER, AltarScreen::new);
         LOGGER.info("The exception below is ok.");
     }
 }

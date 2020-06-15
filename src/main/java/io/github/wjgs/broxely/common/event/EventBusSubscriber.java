@@ -22,8 +22,8 @@ public class EventBusSubscriber {
         if (!world.isRemote) {
             if (entity instanceof ItemEntity && !(entity instanceof EntityWoodPlanks)) {
                 if (((ItemEntity) entity).getItem().getItem() == Items.SPRUCE_PLANKS) {
-                    event.setCanceled(true);
                     DroppedItemHandler.onPlayerDroppedSprucePlanks((ItemEntity) entity, world);
+                    event.setCanceled(true);
                 }
             }
         }

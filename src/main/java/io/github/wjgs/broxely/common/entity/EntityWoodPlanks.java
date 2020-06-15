@@ -106,8 +106,9 @@ public class EntityWoodPlanks extends ItemEntity {
         setGlowing(true);
 
         m_beingConverted = false;
-        m_converted = false;
-        setPosition(pos.getX(), pos.getY() + 8, pos.getZ());
+        m_converted = true;
+        setNoGravity(true);
+        setPosition(pos.getX(), pos.getY(), pos.getZ());
     }
 
     private boolean meetsConvertConditions() {
@@ -123,5 +124,12 @@ public class EntityWoodPlanks extends ItemEntity {
     @Override
     public boolean isBurning() {
         return false;
+    }
+
+    @Override
+    public void tick() {
+        if (m_converted)
+            setMotion(0, 0, 0);
+        super.tick();
     }
 }

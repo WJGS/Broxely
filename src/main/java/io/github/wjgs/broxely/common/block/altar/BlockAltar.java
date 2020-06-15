@@ -1,19 +1,28 @@
-package io.github.wjgs.broxely.common.block;
+package io.github.wjgs.broxely.common.block.altar;
 
 import io.github.wjgs.broxely.Broxely;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
@@ -66,5 +75,26 @@ public class BlockAltar extends Block {
         return SHAPE;
     }
 
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
 
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new AltarTE();
+    }
+
+    @Override
+    // onBlockActivated
+    public ActionResultType func_225533_a_(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult blockRayTraceResult) {
+        if (!world.isRemote) {
+            TileEntity tileEntity = world.getTileEntity(blockPos);
+            if (tileEntity instanceof INamedContainerProvider) {
+                NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+            }
+        }
+        return super.func_225533_a_(blockState, world, blockPos, playerEntity, hand, blockRayTraceResult);
+    }
 }

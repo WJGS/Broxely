@@ -17,7 +17,8 @@ public class DroppedItemHandler {
         newEntity.readAdditional(nbt);
 
         newEntity.setMotion(itemEntity.getMotion());
-        world.addEntity(newEntity);
 
+        itemEntity.remove();
+        world.addEntity(newEntity);
     }
 }
