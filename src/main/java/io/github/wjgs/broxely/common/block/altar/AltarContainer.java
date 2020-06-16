@@ -33,10 +33,10 @@ public class AltarContainer extends Container {
         this.inventory = new InvWrapper(inv);
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 28, 36));
-            addSlot(new SlotItemHandler(h, 1, 82, 8));
-            addSlot(new SlotItemHandler(h, 2, 136, 36));
-            addSlot(new SlotItemHandler(h, 3, 82, 64));
+            addSlot(new SlotItemHandler(h, 0, 82, 8)); // North
+            addSlot(new SlotItemHandler(h, 1, 136, 36)); // East
+            addSlot(new SlotItemHandler(h, 2, 82, 64)); // South
+            addSlot(new SlotItemHandler(h, 3, 28, 36)); // West
 
             addSlot(new SlotItemHandler(h, 4, 82, 36) {
                 @Override
